@@ -1,0 +1,75 @@
+import type { Principal } from "@icp-sdk/core/principal";
+export interface Some<T> {
+    __kind__: "Some";
+    value: T;
+}
+export interface None {
+    __kind__: "None";
+}
+export type Option<T> = Some<T> | None;
+export class ExternalBlob {
+    getBytes(): Promise<Uint8Array<ArrayBuffer>>;
+    getDirectURL(): string;
+    static fromURL(url: string): ExternalBlob;
+    static fromBytes(blob: Uint8Array<ArrayBuffer>): ExternalBlob;
+    withUploadProgress(onProgress: (percentage: number) => void): ExternalBlob;
+}
+export type ReportId = bigint;
+export type Time = bigint;
+export interface Stats {
+    resolvedReports: bigint;
+    totalReports: bigint;
+    urgentReports: bigint;
+}
+export interface Report {
+    id: ReportId;
+    status: ReportStatus;
+    title: string;
+    classificationLabel: string;
+    urgency: Urgency;
+    createdAt: Time;
+    submittedBy: Principal;
+    description: string;
+    category: Category;
+    image: ExternalBlob;
+    location: string;
+}
+export interface UserProfile {
+    name: string;
+}
+export enum Category {
+    other = "other",
+    graffiti = "graffiti",
+    garbage = "garbage",
+    waterIssue = "waterIssue",
+    pothole = "pothole",
+    streetlight = "streetlight"
+}
+export enum ReportStatus {
+    resolved = "resolved",
+    reported = "reported",
+    inProgress = "inProgress"
+}
+export enum Urgency {
+    urgent = "urgent",
+    standard = "standard"
+}
+export enum UserRole {
+    admin = "admin",
+    user = "user",
+    guest = "guest"
+}
+export interface backendInterface {
+    assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
+    getAllReports(): Promise<Array<Report>>;
+    getCallerUserProfile(): Promise<UserProfile | null>;
+    getCallerUserRole(): Promise<UserRole>;
+    getMyReports(): Promise<Array<Report>>;
+    getRecentReports(): Promise<Array<Report>>;
+    getStats(): Promise<Stats>;
+    getUserProfile(user: Principal): Promise<UserProfile | null>;
+    isCallerAdmin(): Promise<boolean>;
+    saveCallerUserProfile(profile: UserProfile): Promise<void>;
+    submitReport(reportInput: Report): Promise<ReportId>;
+    updateReportStatus(reportId: ReportId, newStatus: ReportStatus): Promise<void>;
+}

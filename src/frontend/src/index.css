@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* UrbanSense Civic Blue/Teal palette */
+    --primary: 0.52 0.14 220;
+    --primary-foreground: 1 0 0;
+
+    --secondary: 0.67 0.12 183;
+    --secondary-foreground: 1 0 0;
+
+    --background: 1 0 0;
+    --foreground: 0.25 0.025 255;
+
+    --muted: 0.96 0.015 220;
+    --muted-foreground: 0.52 0.02 255;
+
+    --card: 1 0 0;
+    --card-foreground: 0.25 0.025 255;
+
+    --popover: 1 0 0;
+    --popover-foreground: 0.25 0.025 255;
+
+    --accent: 0.93 0.04 200;
+    --accent-foreground: 0.25 0.025 255;
+
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 1 0 0;
+
+    --success: 0.55 0.15 145;
+    --success-foreground: 1 0 0;
+
+    --border: 0.91 0.02 220;
+    --input: 0.91 0.02 220;
+    --ring: 0.52 0.14 220;
+
+    --chart-1: 0.52 0.14 220;
+    --chart-2: 0.67 0.12 183;
+    --chart-3: 0.55 0.15 145;
+    --chart-4: 0.577 0.245 27.325;
+    --chart-5: 0.75 0.12 60;
+
+    --sidebar: 1 0 0;
+    --sidebar-foreground: 0.25 0.025 255;
+    --sidebar-primary: 0.52 0.14 220;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.96 0.015 220;
+    --sidebar-accent-foreground: 0.25 0.025 255;
+    --sidebar-border: 0.91 0.02 220;
+    --sidebar-ring: 0.52 0.14 220;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .hero-gradient {
+    background: linear-gradient(135deg, #0a7fb7 0%, #0d9bc0 40%, #19b8a6 100%);
+  }
+
+  .hero-pattern {
+    background-image: linear-gradient(
+        135deg,
+        #0a7fb7 0%,
+        #0d9bc0 40%,
+        #19b8a6 100%
+      ),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-blend-mode: overlay;
+  }
+
+  .section-alt {
+    background-color: oklch(0.96 0.015 220);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #0a7fb7, #19b8a6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
